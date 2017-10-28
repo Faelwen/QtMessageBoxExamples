@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,4 +18,15 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     QMessageBox::about(this, "Title", "Message");
+    QMessageBox::aboutQt(this, "Title");
+    QMessageBox::critical(this, "Title", "Message");
+    QMessageBox::information(this, "Title", "Message");
+
+    QMessageBox::warning(this, "Title", "Message");
+    QMessageBox::StandardButton reply = QMessageBox::question(this, "Title", "Message", QMessageBox::Yes | QMessageBox::No);
+    if (reply==QMessageBox::Yes) {
+        QApplication::quit();
+    } else {
+        qDebug() << "No has been pressed";
+    }
 }
